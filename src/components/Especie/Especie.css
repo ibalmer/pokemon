@@ -1,0 +1,9 @@
+img{
+    width: 100px;
+}
+
+.bicho{
+    border: 2px solid red;
+    background-color: cadetblue;
+    border-radius: 8px;
+}

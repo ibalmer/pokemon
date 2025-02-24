@@ -1,0 +1,11 @@
+.evo-img{
+    width: 140px;
+    height: 140px;
+    background-color: rgb(128, 128, 128);
+    border: 2px solid rgb(0, 132, 255);
+    border-radius: 50%;
+    margin: .5rem;
+}
+h2{
+    color: rgb(245, 245, 7);
+}
