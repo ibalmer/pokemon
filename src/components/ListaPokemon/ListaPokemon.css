@@ -1,12 +1,11 @@
-.grilla{
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 1rem;
-    padding: 1rem;
+.grid{
+    padding-inline: 5%;
 }
 
-.botones{
-    display: flex;
-    height: 20px;
-    justify-self: center;
+.pag-boton{
+    font-weight: bold;
+}
+.pag{
+    width: 57px;
+    text-align: center;
 }

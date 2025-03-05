@@ -1,9 +1,11 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect, useContext} from "react";
 import { Especie } from "../Especie/Especie";
+import { ModoContext } from '../../Providers/Modo';
 import './ListaPokemon.css'
 
 export function ListaPokemon() {
     
+    const { isDark} = useContext(ModoContext);
     const [data, setData] = useState([]);
     const [offset, setOffset] = useState(0);
     const [limit, setLimit] = useState(20);
@@ -20,7 +22,7 @@ export function ListaPokemon() {
 
         if(Object.keys(data).length > 0) { newData = [...lista.results]; }
         else { newData = lista.results; }
-
+        let finalData = newData.slice(0, 1026);
         setData(newData);
         
     };
@@ -55,10 +57,10 @@ export function ListaPokemon() {
     
     return(
         <section>
-            <div key={offset} className="grilla">
+            <div key={offset} className="grid col-4 gap-4">
                 {data.map((pkmn, i) => {
                     return(
-                        <div>
+                        <div className="especie-box">
                             <Especie key={pkmn.name} data = {pkmn}/>
                         </div>
                         )  
@@ -68,10 +70,10 @@ export function ListaPokemon() {
                 )} 
             </div>
             
-            <div className="botones">
-                <button onClick={PaginaAnterior}>Pagina Anterior</button>
-                <h2>{pag}</h2>
-                <button onClick={PaginaSiguente}>Pagina Siguente</button>
+            <div className="flex flex-center gap-5 aling-center width-50 justify-self-center m-block-4">
+                <button className={`${isDark? 'border-color-2 white-color black-shadow' : 'border-color-1 black-color white-shadow'} pag-boton pointer scale red-pk p-2 radius-2 width-content justify-self-center border-4`} onClick={PaginaAnterior}>Pagina Anterior</button>
+                <p className={`${isDark? 'border-color-2 white-color black-shadow' : 'border-color-1 black-color white-shadow'} pag pag-boton red-pk p-2 size-4 radius-2 width-content justify-self-center border-4  aling-content-center `}>{pag}</p>
+                <button className={`${isDark? 'border-color-2 white-color black-shadow' : 'border-color-1 black-color white-shadow'} pag-boton pointer scale red-pk p-2 radius-2 width-content justify-self-center border-4`}  onClick={PaginaSiguente}>Pagina Siguente</button>
             </div>
         </section >
     )

@@ -1,19 +1,23 @@
-import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import './Header.css'
+
 
 
 export function Header() {
 
-
-
     return(
-        <div>
-            <h2>Pokemon</h2>
-            <Link to={'tipos/'+ 'normal'}>normal</Link>
-            <Link to={'tipos/'+ 'fire'}>fuego</Link>
-            <Link to={'tipos/'+ 'ice'}>hielo</Link>
-            <Link to={'tipos/'+ 'poison'}>veneno</Link>
-            <Link to={'tipos/'+ 'water/'}>agua</Link>
+        <div className='flex flex-between align-center gap-5 height-100'>
+            <img className='height-100' src="/PokeBall.svg" alt="" />
+            <Link className='boton scale red-pk p-2 radius-2 border-4 border-color-1 white-color black-shadow' to={'/'}>
+                <h5>INICIO</h5>
+            </Link>
+            <Link className='boton scale red-pk p-2 radius-2 border-4 border-color-1 white-color black-shadow' to={'tipos/'}>
+                <h5>TIPOS</h5>
+            </Link>
+            <Link className='boton scale red-pk p-2 radius-2 border-4 border-color-1 white-color black-shadow' to={'equipo'}>
+                <h5>EQUIPO</h5>
+            </Link>
         </div>
+
     )
-}
+};

@@ -1,5 +1,6 @@
 import { useState,useEffect } from "react";
 import './EvoImagenes.css'
+import { Link } from "react-router-dom";
 
 export function EvoImagenes(pkmnUrl) {
     const [imagen, setImagen]= useState();
@@ -17,9 +18,14 @@ export function EvoImagenes(pkmnUrl) {
     }, [PKMN_URL]);
 
     let img = imagen && 'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/' + imagen.id.toString().padStart(3, '0') + '.png';
-
+    
     return(
-        <img className="evo-imagenes" src={img} alt="" />
+        imagen &&(                   
+            <Link className="flex flex-center" to={'/pokemon/'+ imagen.id}>
+                <img className="evo-img op-5" src={img} alt="" />
+            </Link> 
+        )
+        
     )
 
     

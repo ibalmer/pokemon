@@ -1,8 +1,15 @@
-.evoluciones{
-    display: flex;
-    padding: 1rem;
-    background-color: black;
-    border-radius: 24px;
-    width: fit-content;
-    gap: 1rem;
+.evo-box{
+    min-width: 220px;
+    max-width: 220px;
+    flex: 1 1 auto; 
 }
+
+.evo-box img{
+    width: 50%;
+}
+
+.evo-container {
+    max-width: 75%;
+}
+
+

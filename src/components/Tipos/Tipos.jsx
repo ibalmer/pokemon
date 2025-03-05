@@ -1,38 +1,34 @@
-import { useState, useEffect} from "react";
-import { Especie } from "../Especie/Especie";
-import { useParams, Link } from "react-router-dom";
-import './Tipos.css';
-
+import { useContext } from "react";
+import { Link, Routes, Route} from "react-router-dom"
+import { ListaTipos } from "../ListaTipos/ListaTipos"
+import { ModoContext } from '../../Providers/Modo';
+import './tipos.css'
 export function Tipos(){
 
-     let { tipo } = useParams(); 
+    const { isDark} = useContext(ModoContext);
 
+    const tipos = [
+        'normal', 'fighting', 'flying', 'poison', 'ground', 'rock', 
+        'bug', 'ghost', 'steel', 'fire', 'water', 'grass', 
+        'electric', 'psychic', 'ice', 'dragon', 'dark', 'fairy'
+    ];
 
-    const [data, setData] = useState([]);
-    const ALL_URL = 'https://pokeapi.co/api/v2/type/' + tipo + '/' 
-
-    let CallAll = async () => {
-        let response = await fetch(ALL_URL);
-        let lista = await response.json();
-        setData(lista.pokemon);
-    };
-
-    useEffect(() => {
-        CallAll();
-    },[ALL_URL])
-
-    console.log(ALL_URL)
-    return (
-        <section>
-            <div>
-                {data && data.map((pkmn, i) => (
-                    
-                    <div key={i}>
-                        <Especie key={pkmn + i} data={pkmn.pokemon}/>
-                    </div>
-                ))}
+    return(
+        <section className="grid-container width-max">
+            {tipos.map((tipo) => (
+                <div className={`${tipo} pic-div scale p-2 radius-2`}>
+                    <Link key={tipo} to={`./${tipo}`}>
+                        <img className={`${isDark? 'black-filter' : 'white-filter'} pic`} src={`/${tipo}.svg`} alt={`${tipo} type`} /> 
+                    </Link>                  
+                </div>
+            ))}
+            <div className="pokeball flex flex-center p-2 radius-2 gray">
+               <img className="pokeball-pic" src="/PokeBall.svg" alt="" /> 
             </div>
+            <Routes>
+                <Route path='/tipos/:tipo' element ={ <ListaTipos/>} />
+            </Routes>
         </section>
-    );
+      );
     
-};
+}

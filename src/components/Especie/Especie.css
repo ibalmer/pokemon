@@ -1,9 +1,7 @@
-img{
-    width: 100px;
+.especies-boton{
+    font-weight: bolder;
+}
+.pkmn-box{
+    min-width: 200px;
 }
 
-.bicho{
-    border: 2px solid red;
-    background-color: cadetblue;
-    border-radius: 8px;
-}

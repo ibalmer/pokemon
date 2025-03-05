@@ -1,0 +1,16 @@
+.search-icon{
+    top: 50%;
+    left: .5rem;
+    transform: translateY(-50%);
+}
+.search-icon:hover{
+    scale: 1.1;
+}
+.buscador::placeholder{
+    color:var(--withe-color);
+}
+
+.buscador:focus{  
+    outline: 4px solid var(--black-color);
+    font-weight: bolder;
+}
