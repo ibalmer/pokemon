@@ -46,7 +46,6 @@ export const EquipoProvider = ({ children }) => {
     
     function AgregarPc(id) {
         setPc(prevPc => {
-            console.log(prevPc);
             if (Array.isArray(prevPc) && !prevPc.includes(id) && prevPc.length < 40 && !equipo.includes(id))  {
                 return [...prevPc, id];
             }
@@ -64,7 +63,6 @@ export const EquipoProvider = ({ children }) => {
             };
         });
     };
-    
 
     function EliminarPkmn(id){
         setEquipo((prevLista) => prevLista.filter((elemento) => elemento !== id));
@@ -74,8 +72,31 @@ export const EquipoProvider = ({ children }) => {
         setPc((prevLista) => prevLista.filter((elemento) => elemento !== id));
     };
 
+    
+
+    const [pkmnData, setPkmnData] = useState(0);
+ 
+    function VerPkmn(id){  
+        setPkmnData(id)
+    };
+
+    function VaciarPkmn(){
+        setPkmnData(undefined)
+    };
+
+    const [foco, setFoco] = useState(0);
+
+    function Foco(id) {
+        setFoco(id)
+    };
+
+    function CerrarFoco(){
+        setFoco(0)
+    };
+
+
     return (
-        <EquipoContext.Provider value={{ equipo, AgregarPkmn, pc, AgregarPc, EliminarPkmn, EliminarPc, MoverPkmn, MoverPc}}>
+        <EquipoContext.Provider value={{ equipo, AgregarPkmn, pc, AgregarPc, EliminarPkmn, EliminarPc, MoverPkmn, MoverPc, VerPkmn, VaciarPkmn, pkmnData, foco, setFoco, Foco }}>
             {children}
         </EquipoContext.Provider>
     );

@@ -54,10 +54,10 @@ export function Informacion(pkmnUrl){
     
 
     return (
-        <section className='flex flex-start column height-100 gap-6'>
-            <div>
-                <div className='flex column aling-center gap-2'>
-                    <h3>Descripción</h3>
+        <section className='flex align-center column flex-between  min-height-100'>
+            <div className='flex align-center column'>
+                <div className=''>
+                    <h5>Descripción</h5>
                     <p className='size-3'>{clase && clase.genus}</p>
                 </div>
                 <p className='size-2 m-top-4'>{descripcion && descripcion.flavor_text}</p>

@@ -6,6 +6,6 @@
     font-weight: bold;
 }
 .pag{
-    width: 57px;
+    min-width: 50px;
     text-align: center;
 }

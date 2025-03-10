@@ -1,0 +1,13 @@
+.pokesection{
+    min-width: 220px;
+    border: 6px ridge var(--black-color);
+}
+.pantalla-img{
+    min-width: 170px;
+}
+.mensaje-foco{
+    top: -17%;
+    right: -106%;
+    border: 6px ridge var(--black-color);
+    border-radius: var(--radius-2);
+}

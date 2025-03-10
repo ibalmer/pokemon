@@ -26,9 +26,10 @@ export function Pokemon(){
 
         setPokemon(info)
     };
-    console.log(equipo)
+    
     useEffect(() =>{
         CallPokemon();
+        console.log(pokemon && pokemon)
     }, [id]);
 
     const [fondo, setFondo] = useState();
@@ -49,47 +50,60 @@ export function Pokemon(){
     const [display, setDisplay] = useState(1);
 
     return (
-        <section className="flex column flex-center align-center m-top-4">
-            <div className={`${'op-'+ fondo} flex width-content height-content p-4 radius-4 shadow-box m-block-4`} >
-                {pokemon.name && (
-                    <div className="flex column flex-between">
-                        <h3 className="capitalize">{pokemon.name} {`#${pokemon.id.toString().padStart(3, '0')}`}</h3>
-                        <img src={'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/' + pokemon.id.toString().padStart(3, '0') + '.png'} alt={pokemon.name} />
-                                  
-                        <button className="width-content align-self-center" onClick={() => AgregarPkmn(pokemon.id)}>
-                            <img className={`${equipo.includes(pokemon.id) || pc && pc.includes(pokemon.id) ? 'op-5 not-allowed' : '' } add-button width-content`} src="/PokeBall.svg" alt="" />
-                        </button>
-                    </div>
-                )}
-                <section className="flex column radius-4 p-3">    
-                    <div className={`${display === 1 ? "none " : ""} data-box height-100`}>
+        pokemon && Object.keys(pokemon).length > 0 ? (
+        <div className="flex flex-center align-center column m-4">
+            <section className="pokemon flex flex-center width-100 p-inline-4 gap-3">
+                <div className={`${'op-'+ fondo} pokemon-vista flex flex-center width-50 radius-2 shadow-box p-4`} >
+                    {pokemon.name && (
+                        <div className="flex flex-between align-center column">
+                            <h4 className="capitalize">{pokemon.name} {`#${pokemon.id.toString().padStart(3, '0')}`}</h4>
+                            <img className="width-100" src={'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/' + pokemon.id.toString().padStart(3, '0') + '.png'} alt={pokemon.name} />
+                                    
+                            <button className={`${equipo.includes(pokemon.id) || pc && pc.includes(pokemon.id) ? 'op-5 not-allowed' : '' }  atrapar-button width-content align-self-center pointer`}  onClick={() => AgregarPkmn(pokemon.id)}>
+                                <img className="add-button width-content"  src="/PokeBall.svg" alt="" />
+                                <h6>{equipo.includes(pokemon.id) || pc && pc.includes(pokemon.id) ? 'Atrapado' : 'Atrapar!'}</h6>
+                            </button>
+                        </div>
+                    )}
+                </div>
+                <section className="pokemon-info width-50 flex flex-between align-center column p-3 radius-2 shadow-box gray">    
+                    <div className={`${display === 1 ? "none " : "flex"} data-box column align-center height-100 width-100 radius-2 p-4`}>
                         {pokemon.name && (
                             <>
                                 <Informacion key = {pokemon.name} pkmnUrl = {pokemon}   pkmnID = {pokemon.id}/>
                             </>
                         )}
                     </div>
-                    <div className={`${display === 1 ? "" : "none"} data-box height-100`}>
+                    <div className={`${display === 1 ? "flex" : "none"} data-box column align-center flex-between height-100 width-100 radius-2 p-4`}>
                         {pokemon.name && (
                                 <Estadisticas key = {pokemon.name} pkmnUrl = {PKMN_URL} pkmnID = {pokemon.id}/>
                         )}
                     </div>
-                    <div className="info-icon flex flex-center m-top-4 size-5 gap-4">
+                    <div className="flex size-5 gap-4 ">
                         {displayInfo.map((mode, i) => (
-                        <a className={`${display === i ? "outline-black " : ""} boton scale red-pk p-2 radius-2 white-color`} onClick={() => setDisplay(i)}>
+                        <a className={`${display === i ? fondo + '-color' : 'white-color'} outline-black  boton scale red-pk p-2 radius-2 `} onClick={() => setDisplay(i)}>
                         {mode.icon}
                         </a>
                         ))}
                     </div>
                 </section>
-            </div>
-            <>
+                
+            </section>
+            <div className="flex flex-center ">
                 {pokemon.name && (
                     <>
                         <Evoluciones key = {pokemon.name} pkmnUrl = {pokemon.species.url} pkmnID = {pokemon.id}/>
                     </>
                 )}
-            </>              
-        </section>
+            </div>
+        </div>
+                  
+        
+        ):(
+            <div className="flex flex-center align-center width-content red-pk radius-2 p-2 m-4">
+                <h4 className="text-center">El Pokemon búscado no existe...</h4>
+                <img className="error-img width-100" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/25.png" alt="" />
+            </div>
+        )
     )
 };

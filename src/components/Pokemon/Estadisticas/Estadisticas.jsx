@@ -1,7 +1,6 @@
 import './Estadisticas.css';
 import { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
-import { Debilidades } from './Debilidades/Debilidades';
 
 export function Estadisticas(pkmnUrl){
 
@@ -24,8 +23,8 @@ export function Estadisticas(pkmnUrl){
     }, [pkmnUrl]);
 
     return(
-        <section className='flex flex-start column height-100 gap-6'>
-            <h3>Estadisticas</h3>
+        <section className='flex flex-between align-center column height-100'>
+            <h5>Estadisticas</h5>
             <div>
                 {pkmnStats && pkmnStats.map((stat, i) => (
                 <p className='size-4'>{stat.stat.name}:{stat.base_stat}</p>

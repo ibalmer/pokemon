@@ -22,11 +22,12 @@ export function ListaTipos(){
     },[ALL_URL])
     
     return (
-        <section>
-          <div className="grid col-4 gap-4">
+        <section className="width-100 p-inline-4 m-4 flex flex-center column align-center">
+          <h3 className={`${tipo} text-center p-2 radius-2 capitalize m-bottom-4`}>{tipo}</h3>
+          <div className="flex wrap flex-center align-center width-100 gap-4">
             {data && data.map((pkmn, i) => (
               !pkmn.pokemon.name.includes('-') ? (
-                <div key={i}>
+                <div className="flex flex-center" key={i}>
                   <Especie key={pkmn + i} data={pkmn.pokemon} />
                 </div>
               ) : null

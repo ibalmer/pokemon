@@ -12,7 +12,7 @@ export function Especie (data){
         let info = await response.json();
         
         let newInfo;
-
+        
         if(Object.keys(info).length > 0) { newInfo = info; }
         else { newInfo = info; }
 
@@ -24,16 +24,16 @@ export function Especie (data){
         }, [TYPE_URL]);
         
         let img = pokemon.id && 'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/' + pokemon.id.toString().padStart(3, '0') + '.png';
-        let max = 1026
+        
         
         return (
-                <div className={`op-${pokemon.types && pokemon.types[0].type.name} pkmn-box scale width-100 height-100 p-3 radius-4 flex column flex-between pointer`}>
-                <div>
-                    {pokemon.name && <h5 className="capitalize"> {pokemon.name} </h5>}
-                    <img className="img width-100" src={img} alt="" />
-                </div>
+                <div className={`op-${pokemon.types && pokemon.types[0].type.name} pkmn-box scale width-content p-3 radius-2 flex column flex-between pointer`}>
+                
+                    {pokemon.name && <h6 className="nombre-pkmn capitalize"> {pokemon.name} </h6>}
+                    <img className="especie-img width-100" src={img} alt="" />
+                
                 {pokemon.types && (
-                    <div className="flex column gap-1">
+                    <div className="flex flex-center gap-1">
                         <Link to={'/pokemon/'+ pokemon.name}>
                             <p className="especies-boton scale red-pk p-2 radius-2 width-content justify-self-center border-4 border-color-1 black-color white-shadow">Ver más...</p>
                         </Link>

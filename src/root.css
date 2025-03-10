@@ -7,15 +7,11 @@
     --white-color: #f5f5f5; 
     --white-filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(14deg) brightness(100%) contrast(98%);;
     --white-color-op: #f5f5f5d0; 
-
-    /* [data-theme='dark'] {
-    --black-color:  #f5f5f5;
-    --black-filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(14deg) brightness(100%) contrast(98%);
-    --black-color-op: #f5f5f5d0;
-} */
-    
-    
+  
     /* --------------------- */
+
+    --select-color:#00ff0d;
+
     --gray-color: #7D7D7D;
     --red-pk-color: #FF1C1C;
     --normal-color: #A0A2A0;
@@ -36,6 +32,7 @@
     --dragon-color: #4F60E2;
     --dark-color: #4F3F3D;
     --fairy-color: #EF70EF;
+    --button-dex-color: #28AAFE;
 
     --normal-color-op: #a0a2a0d0;
     --fighting-color-op: #FF8100d0;

@@ -11,7 +11,7 @@ export function CambiarModo() {
     setModoImg(isDark? 'electric' : 'dark')
   }, [isDark]);
   return (
-    <button className={`${modeImg} boton-modo flex flex-center width-50p height-50p p-1 m-right-4 scale p-2 radius-2 border-4 border-color-1 white-color black-shadow`} onClick={DarkClass}>
+    <button className={`${modeImg} boton-modo flex flex-center width-50p height-50p p-1 scale p-2 radius-2 border-4 border-color-1 white-color black-shadow`} onClick={DarkClass}>
         <img className='width-100 height-100' src={`/${modeImg}.svg`} alt="" />
     </button>
   );

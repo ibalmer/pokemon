@@ -2,26 +2,34 @@
     justify-self: center;
     display: grid;
     justify-content: center;
-    padding-inline: 5%;
+    padding-inline: 10%;
     grid-template-columns: repeat(4, minmax(25%,1fr));
-    grid-template-rows: repeat(5, minmax(20%,1fr));
+    grid-template-rows: repeat(5, 1fr);
     gap: 1rem;
     width: 100%;
-    height: 80vh;
     box-sizing: border-box;
-    margin-bottom: 7rem;
+    margin-top: var(--distance-4);
   }
   .pic-div{
     width: 100%;
   }
-.pic{
+.tipo-img{
     height: 100%;
     width: 100%;
 }
   .pokeball{
     grid-column: 2 / span 2;
     grid-row: 3;
+    height: fit-content;
+    max-height: 100%;
+    width: 100%;
+    padding-inline: 29%;
+    padding-block: var(--distance-2);
   }
+  .pokeball-pic, .tipo-img{
+    max-height: 120px;
+  }
+
 
 
 

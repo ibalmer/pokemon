@@ -5,7 +5,7 @@ import { ModoContext } from '../../Providers/Modo';
 import './tipos.css'
 export function Tipos(){
 
-    const { isDark} = useContext(ModoContext);
+    const { isDark } = useContext(ModoContext);
 
     const tipos = [
         'normal', 'fighting', 'flying', 'poison', 'ground', 'rock', 
@@ -14,15 +14,15 @@ export function Tipos(){
     ];
 
     return(
-        <section className="grid-container width-max">
+        <section className="grid-container height-content">
             {tipos.map((tipo) => (
                 <div className={`${tipo} pic-div scale p-2 radius-2`}>
                     <Link key={tipo} to={`./${tipo}`}>
-                        <img className={`${isDark? 'black-filter' : 'white-filter'} pic`} src={`/${tipo}.svg`} alt={`${tipo} type`} /> 
+                        <img className={`${isDark? 'black-filter' : 'white-filter'} tipo-img`} src={`/${tipo}.svg`} alt={`${tipo} type`} /> 
                     </Link>                  
                 </div>
             ))}
-            <div className="pokeball flex flex-center p-2 radius-2 gray">
+            <div className="pokeball flex flex-center  radius-2 gray">
                <img className="pokeball-pic" src="/PokeBall.svg" alt="" /> 
             </div>
             <Routes>
