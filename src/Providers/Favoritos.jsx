@@ -21,6 +21,9 @@ export const EquipoProvider = ({ children }) => {
     useEffect(() => {
         localStorage.setItem('pc', JSON.stringify(pc));
     }, [pc]);
+    
+    
+    const [msjPc, setMsjPc] = useState(false)
 
     function AgregarPkmn(id) {
         setEquipo(prevEquipo => {
@@ -36,6 +39,7 @@ export const EquipoProvider = ({ children }) => {
     function MoverPkmn(id) {
         setEquipo(prevEquipo => {
             if (!prevEquipo.includes(id) && prevEquipo.length < 6) {
+                CerrarFoco()
                 return [...prevEquipo, id];
             } else {
                 AgregarPc(id)               
@@ -56,6 +60,7 @@ export const EquipoProvider = ({ children }) => {
     function MoverPc(id) {
         setPc(prevEquipo => {
             if (!prevEquipo.includes(id) && prevEquipo.length < 40) {
+                CerrarFoco()
                 return [...prevEquipo, id];
             } else {
                 AgregarPkmn(id)               
@@ -72,6 +77,16 @@ export const EquipoProvider = ({ children }) => {
         setPc((prevLista) => prevLista.filter((elemento) => elemento !== id));
     };
 
+    useEffect(() => {
+        if (msjPc) {
+            const timer = setTimeout(() => {
+                setMsjPc(false); 
+            }, 2000);
+            return () => clearTimeout(timer);
+        }
+    }, [msjPc, equipo, pc]);
+    
+    
     
 
     const [pkmnData, setPkmnData] = useState(0);
@@ -96,7 +111,7 @@ export const EquipoProvider = ({ children }) => {
 
 
     return (
-        <EquipoContext.Provider value={{ equipo, AgregarPkmn, pc, AgregarPc, EliminarPkmn, EliminarPc, MoverPkmn, MoverPc, VerPkmn, VaciarPkmn, pkmnData, foco, setFoco, Foco }}>
+        <EquipoContext.Provider value={{ equipo, AgregarPkmn, pc, AgregarPc, EliminarPkmn, EliminarPc, MoverPkmn, MoverPc, VerPkmn, VaciarPkmn, pkmnData, foco, setFoco, Foco, msjPc, setMsjPc }}>
             {children}
         </EquipoContext.Provider>
     );

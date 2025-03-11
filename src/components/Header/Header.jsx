@@ -1,11 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { CambiarModo } from '../CambiarModo/CambiarModo';
-import { useState, useEffect } from 'react';
+import { useState,  } from 'react';
 import { FaBars } from "react-icons/fa";
+import { EquipoContext } from "../../Providers/Favoritos";
+import { useContext } from "react"
 import './Header.css'
 
 export function Header() {
+
+    const {setFoco} = useContext(EquipoContext);
 
     const [menu, setMenu] = useState(false);
 
@@ -28,7 +32,7 @@ export function Header() {
                         <Link onClick={() => setMenu(false)} className='boton-header scale red-pk p-2 radius-2 border-4 border-color-1 white-color black-shadow' to={'tipos/'}>
                             <h5>TIPOS</h5>
                         </Link>
-                        <Link onClick={() => setMenu(false)} className='boton-header scale red-pk p-2 radius-2 border-4 border-color-1 white-color black-shadow' to={'equipo'}>
+                        <Link onClick={() => {setMenu(false); setFoco(0)}} className='boton-header scale red-pk p-2 radius-2 border-4 border-color-1 white-color black-shadow' to={'equipo'}>
                             <h5>EQUIPO</h5>
                         </Link>
                     </div>

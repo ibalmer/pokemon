@@ -502,7 +502,11 @@ p, a, li, span, small, strong, label, option, blockquote{
     .nombre-pkmn{
         font-size: 1.15rem;
     }
+    .almacenamiento{
+        font-size: var(--size-4);
+    }
  }
+ 
 
 
 

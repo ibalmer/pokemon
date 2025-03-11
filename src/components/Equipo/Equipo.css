@@ -11,4 +11,5 @@
 }
 .pc-pkmn{
     border: 10px ridge var(--grass-color);
+    min-height: 136px;
 }
