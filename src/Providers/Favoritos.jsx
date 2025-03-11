@@ -23,8 +23,7 @@ export const EquipoProvider = ({ children }) => {
     }, [pc]);
     
     
-    const [msjPc, setMsjPc] = useState(false)
-
+    
     function AgregarPkmn(id) {
         setEquipo(prevEquipo => {
             if (!prevEquipo.includes(id) && prevEquipo.length < 6 && Array.isArray(pc) && !pc.includes(id)) {
@@ -35,7 +34,7 @@ export const EquipoProvider = ({ children }) => {
             };
         });
     };
-
+    
     function MoverPkmn(id) {
         setEquipo(prevEquipo => {
             if (!prevEquipo.includes(id) && prevEquipo.length < 6) {
@@ -56,7 +55,7 @@ export const EquipoProvider = ({ children }) => {
             return prevPc;
         });
     };
-
+    
     function MoverPc(id) {
         setPc(prevEquipo => {
             if (!prevEquipo.includes(id) && prevEquipo.length < 40) {
@@ -68,15 +67,17 @@ export const EquipoProvider = ({ children }) => {
             };
         });
     };
-
+    
     function EliminarPkmn(id){
         setEquipo((prevLista) => prevLista.filter((elemento) => elemento !== id));
     };
-
+    
     function EliminarPc(id){
         setPc((prevLista) => prevLista.filter((elemento) => elemento !== id));
     };
-
+    
+    const [msjPc, setMsjPc] = useState(false)
+    
     useEffect(() => {
         if (msjPc) {
             const timer = setTimeout(() => {
@@ -85,6 +86,17 @@ export const EquipoProvider = ({ children }) => {
             return () => clearTimeout(timer);
         }
     }, [msjPc, equipo, pc]);
+
+    const [msjFull, setMsjFull] = useState(false)
+    
+    useEffect(() => {
+        if (msjFull) {
+            const timer = setTimeout(() => {
+                setMsjFull(false); 
+            }, 2000);
+            return () => clearTimeout(timer);
+        }
+    }, [msjFull]);
     
     
     
@@ -111,7 +123,7 @@ export const EquipoProvider = ({ children }) => {
 
 
     return (
-        <EquipoContext.Provider value={{ equipo, AgregarPkmn, pc, AgregarPc, EliminarPkmn, EliminarPc, MoverPkmn, MoverPc, VerPkmn, VaciarPkmn, pkmnData, foco, setFoco, Foco, msjPc, setMsjPc }}>
+        <EquipoContext.Provider value={{ equipo, AgregarPkmn, pc, AgregarPc, EliminarPkmn, EliminarPc, MoverPkmn, MoverPc, VerPkmn, VaciarPkmn, pkmnData, foco, setFoco, Foco, msjPc, setMsjPc, msjFull, setMsjFull }}>
             {children}
         </EquipoContext.Provider>
     );

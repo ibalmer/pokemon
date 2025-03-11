@@ -1,5 +1,5 @@
 .data-pkmn{
-    top: -20%;
+    top: -70%;
     left: -50%;
 }
 
@@ -12,4 +12,9 @@
 .pc-pkmn{
     border: 10px ridge var(--grass-color);
     min-height: 136px;
+}
+.almacenamiento-container {
+    background-image: url('/pokeball_background.jpg'); /* Ruta desde la raíz pública */
+    background-size: cover; /* Ajusta para que el fondo cubra el contenedor */
+    background-position: center; /* Centra la imagen */
 }

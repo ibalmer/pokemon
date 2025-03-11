@@ -12,7 +12,7 @@ import { EquipoContext } from "../../Providers/Favoritos";
 
 export function Pokemon() {
     const { id } = useParams();
-    const { equipo, AgregarPkmn, pc, msjPc, setMsjPc } = useContext(EquipoContext);
+    const { equipo, AgregarPkmn, pc, msjPc, setMsjPc, msjFull, setMsjFull } = useContext(EquipoContext);
 
     const [pokemon, setPokemon] = useState({});
     const [fondo, setFondo] = useState('');
@@ -42,7 +42,6 @@ export function Pokemon() {
             console.log("Finalizó la llamada a la API.");
         }
     };
-
     
     useEffect(() => {
         CallPokemon();
@@ -90,19 +89,11 @@ export function Pokemon() {
     return pokemon && Object.keys(pokemon).length > 0 ? (
         <div className="flex flex-center align-center column m-4">
             <section className="pokemon flex flex-center width-100 p-inline-4 gap-3">
-                <div
-                    className={`${
-                        'op-' + fondo
-                    } pokemon-vista flex flex-center width-50 radius-2 shadow-box p-4`}
-                >
+                <div className={`op-${fondo} pokemon-vista flex column flex-center width-50 radius-2 shadow-box p-4`}>
                     {pokemon.name && (
-                        <div className="flex flex-between align-center column relative">
-                            {msjPc === true && (
-                                equipo.includes(pokemon.id) || (pc && pc.includes(pokemon.id)) ? (
-                                    <div className="msj-pc absolute gray p-2 radius-2 z-index-1">
-                                        <p className="bold text-center">El Pokémon está en el almacenamiento</p>
-                                    </div>
-                                ) : equipo.length + pc.length < 46 ? (
+                        <div className="msj-pc flex flex-between align-center column relative">
+                            {msjPc && (
+                                equipo.length + pc.length < 46 ? (
                                     <div className="msj-pc absolute gray p-2 radius-2 z-index-1">
                                         <p className="bold">Agregado al Almacenamiento</p>
                                     </div>
@@ -112,43 +103,49 @@ export function Pokemon() {
                                     </div>
                                 )
                             )}
-                            <h4 className="capitalize">
-                                {pokemon.name} {`#${pokemon.id.toString().padStart(3, '0')}`}
-                            </h4>
-                            <img
-                                className="width-100"
-                                src={
-                                    'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/' +
-                                    pokemon.id.toString().padStart(3, '0') +
-                                    '.png'
-                                }
-                                alt={pokemon.name}
-                            />
-                            <button
-                                className={`${
-                                    equipo.includes(pokemon.id) || (pc && pc.includes(pokemon.id))
-                                        ? 'op-5 not-allowed'
-                                        : ''
-                                } atrapar-button width-content align-self-center pointer`}
-                                onClick={() => {
-                                    AgregarPkmn(pokemon.id);
-                                    setMsjPc(true);
-                                }}
-                            >
-                                <img
-                                    className="add-button width-content"
-                                    src="/PokeBall.svg"
-                                    alt=""
-                                />
-                                <h6>
-                                    {equipo.includes(pokemon.id) || (pc && pc.includes(pokemon.id))
-                                        ? 'Atrapado'
-                                        : 'Atrapar!'}
-                                </h6>
-                            </button>
+                            {msjFull && (
+                                <div className="msj-pc absolute gray p-2 radius-2 z-index-1">
+                                    <p className="bold text-center">El Pokémon está en el almacenamiento</p>
+                                </div>
+                            )}
                         </div>
                     )}
+                    <h4 className="capitalize">
+                        {pokemon.name} {`#${pokemon.id.toString().padStart(3, '0')}`}
+                    </h4>
+                    <img
+                        className="width-100"
+                        src={`https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/${pokemon.id
+                            .toString()
+                            .padStart(3, '0')}.png`}
+                        alt={pokemon.name}
+                    />
+                    {equipo.includes(pokemon.id) || (pc && pc.includes(pokemon.id)) ? (
+                        <button onClick={() =>setMsjFull(true)} className="atrapar-button width-content align-self-center not-allowed">
+                            <img
+                                className="op-5"
+                                src="/PokeBall.svg"
+                                alt="Pokéball"
+                            />
+                            <h6 className="op-5">Atrapado</h6>
+                        </button>
+                    ) : (
+                        <button
+                            className="atrapar-button width-content align-self-center pointer"
+                            onClick={() => {
+                                AgregarPkmn(pokemon.id);
+                                setMsjPc(true);
+                            }}
+                        >
+                            <img
+                                src="/PokeBall.svg"
+                                alt="Pokéball"
+                            />
+                            <h6>¡Atrapar!</h6>
+                        </button>
+                    )}                   
                 </div>
+
                 <section className="pokemon-info width-50 flex flex-between align-center column p-3 radius-2 shadow-box gray">
                     <div
                         className={`${
@@ -174,8 +171,8 @@ export function Pokemon() {
                         {displayInfo.map((mode, i) => (
                             <a
                                 className={`${
-                                    display === i ? fondo + '-color' : 'white-color'
-                                } outline-black  boton scale red-pk p-2 radius-2 `}
+                                    display === i ? 'red-pk' : ''
+                                } outline-black  boton scale white-color p-2 radius-2 `}
                                 onClick={() => setDisplay(i)}
                             >
                                 {mode.icon}

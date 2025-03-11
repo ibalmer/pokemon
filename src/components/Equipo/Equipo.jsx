@@ -8,7 +8,7 @@ export function Equipo(){
     const {equipo, pc, VerPkmn, pkmnData, Foco, foco} = useContext(EquipoContext);
   
     return (
-        <section className="height-content p-inline-6 flex column align-center m-bottom-6 m-top-4">
+        <section className="almacenamiento-container height-content p-inline-6 flex column align-center p-bottom-6 p-top-4">
             <h3 className="red-pk width-content p-2 radius-2 m-bottom-4">Equipo</h3>
             <div className="flex column align-center gap-4 m-bottom-7">
                 <div className="equipo-pkmn dex width-100 flex flex-center wrap p-2 radius-2">
